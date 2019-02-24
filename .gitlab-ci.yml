@@ -1,0 +1,18 @@
+before_script:
+  - echo "Hello GitLab CI!"
+  - echo "Installing build tools..."
+  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm"
+  - . $NVM_DIR/nvm.sh
+  - nvm install 8.11.1
+  - npm install npm@latest -g
+  - echo "DONE Installing build tools"
+
+build:
+  script:
+    - echo "Building..."
+    - npm install
+    - npm run test
+    - npm run build
+    - echo "DONE Building"
+    

@@ -1,0 +1,34 @@
+@mixin no-toggler {
+  display: block;
+  list-style-type: none;
+  &::-webkit-details-marker { display: none;}
+  &::-moz-list-bullet { list-style-type: none; }
+}
+
+@mixin padding-x ($size) {
+  padding-top: $size;
+  padding-bottom: $size;
+}
+
+@mixin no-gutters {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+@mixin fill-w {
+  width: 100%;
+  display: inline-block;
+}
+
+@mixin fill-h {
+  height: 100%;
+  display: inline-block;
+}
+
+@mixin selected {
+  color: green;
+  &:after {
+    color: initial;
+    content: $icon-selected;
+  }
+}

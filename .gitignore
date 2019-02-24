@@ -1,0 +1,8 @@
+.cache/
+.idea/
+.history/
+node_modules/
+.vscode/
+.history/
+dist/
+.tags*

@@ -1,0 +1,123 @@
+@import 'globals';
+@import 'mixins';
+@import 'variables';
+@import 'dialog';
+
+%half-border {
+  float: left;
+  height: 1em;
+  border-left: 0.15em dotted;
+}
+
+.tree-view {
+  position: relative;
+  position: relative;
+  overflow: scroll;
+  resize: horizontal;
+  width: $container-width;
+  height: $container-height;
+  border: gray solid;
+
+  div.dialog {
+    background: $background-color;
+    &::backdrop {
+      opacity: 0;
+    }
+  }
+
+  div.tv-toolbar {
+    @include fill-w;
+    display: inline-block;
+    position: sticky;
+    top: 0;
+    z-index: $zindex + 1;
+    background: $background-color;
+  }
+
+  details {
+    summary {
+      @include no-toggler;
+    }
+  }
+
+  div.tv-nodes {
+    @include fill-w;
+
+    > details > ul {
+      padding-left: 1%;
+      > summary:before {
+        content: $icon-root;
+        font-size: 1.15em;
+      }
+    }
+
+    ul {
+      width: 100%;
+      margin-top: 0;
+      list-style: none;
+      position: relative;
+
+      li {
+        border-left: dotted 1px;
+        line-height: 1.1em;
+        position: relative;
+        @include padding-x(1px);
+
+        span {
+          &:focus {
+            background: darkgreen;
+          }
+          &:after {
+            color: initial;
+            content: "";
+            font-size: 0.8em;
+            float: left;
+          }
+          &.selected {
+            @include selected();
+          }
+        }
+
+        > span {
+          &::before {
+            color: initial;
+            content: $icon-leaf-path;
+            font-size: 0.4em;
+            float: left;
+          }
+        }
+
+        details {
+          summary {
+            &::before {
+              content: $icon-node-path;
+              float: left;
+              padding-right: 1px;
+              cursor: pointer;
+              font-size: 0.5em;
+            }
+          }
+        }
+
+        &:last-child {
+          border-left: none !important;
+
+          span {
+            &::before {
+              @extend %half-border;
+            }
+          }
+
+          details {
+            summary {
+              position: relative;
+              &::before {
+                @extend %half-border;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
